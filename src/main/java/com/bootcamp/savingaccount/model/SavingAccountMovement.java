@@ -12,7 +12,7 @@ import java.util.Date;
 public class SavingAccountMovement {
     @Id
     private String  id;
-    private Integer savingAccountNumber;
+    private Integer accountNumber;
     private String  movementType;
     private Date    movementDate;
     private Double  amount;
