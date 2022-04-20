@@ -15,8 +15,8 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/savingSavingAccount")
 @RequiredArgsConstructor
 public class SavingAccountController {
-    @Value("${passiveproducts.server.url}")
-    private String passPrdUrl;
+//    @Value("${passiveproducts.server.url}")
+//    private String passPrdUrl;
 
     public final SavingAccountService service;
     @GetMapping
@@ -24,7 +24,7 @@ public class SavingAccountController {
         return service.findAll();
     }
 
-    @GetMapping("/savingAccountNumber/{num}")
+    @GetMapping("/accountNumber/{num}")
     public Flux<SavingAccount> findByAccountNumber(@PathVariable("num") String num){
         return service.findByAccountNumber(num);
     }

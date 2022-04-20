@@ -14,9 +14,9 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/savingSavingAccountMovement")
 @RequiredArgsConstructor
 public class SavingAccountMovementController {
-    @Value("${passiveproducts.server.url}")
-    private String passPrdUrl;
-    
+//    @Value("${passiveproducts.server.url}")
+//    private String passPrdUrl;
+//
     public final SavingAccountMovementService service;
     @GetMapping
     public Flux<SavingAccountMovement> getAll(){
@@ -24,23 +24,23 @@ public class SavingAccountMovementController {
     }
 
     @GetMapping("/find/{num}")
-    public Flux<SavingAccountMovement> getBysavingAccountNumber(@PathVariable("num") String num){
+    public Flux<SavingAccountMovement> getByAccountNumber(@PathVariable("num") String num){
         return service.findByAccountNumber(num);
     }
 
     @GetMapping("/savingAccountBalance/{savingAccount}")
     public String getAccountBalance(@PathVariable("savingAccount") String savingAccount){
         double balance=0;
-        RestTemplate restTemplate=new RestTemplate();
-        String urlDp = passPrdUrl +"/savingSavingAccountMovement/find/" + savingAccount;
-        ResponseEntity<SavingAccountMovement[]> savingSavingAccountMovements = restTemplate.getForEntity(urlDp,SavingAccountMovement[].class);
-        for(SavingAccountMovement am: savingSavingAccountMovements.getBody()){
-            if (am.getMovementType().equals("D")){
-                balance += am.getAmount();
-            }else if (am.getMovementType().equals("R")){
-                balance -= am.getAmount();
-            }
-        }
+//        RestTemplate restTemplate=new RestTemplate();
+//        String urlDp = passPrdUrl +"/savingSavingAccountMovement/find/" + savingAccount;
+//        ResponseEntity<SavingAccountMovement[]> savingSavingAccountMovements = restTemplate.getForEntity(urlDp,SavingAccountMovement[].class);
+//        for(SavingAccountMovement am: savingSavingAccountMovements.getBody()){
+//            if (am.getMovementType().equals("D")){
+//                balance += am.getAmount();
+//            }else if (am.getMovementType().equals("R")){
+//                balance -= am.getAmount();
+//            }
+//        }
         return String.valueOf(balance);
     }
 
