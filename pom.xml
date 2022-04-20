@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bootcamp</groupId>
-	<artifactId>savingaccount</artifactId>
+	<artifactId>savingAccount</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>savingaccount</name>
+	<name>savingAccount</name>
 	<description>Microservicio de Cuentas de Ahorro</description>
 	<properties>
 		<java.version>11</java.version>
