@@ -1,13 +1,13 @@
-package com.bootcamp.savingAccount;
+package com.bootcamp.savingaccount;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SavingsavingAccountApplication {
+public class SavingAccountApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SavingsavingAccountApplication.class, args);
+		SpringApplication.run(SavingAccountApplication.class, args);
 	}
 
 }
