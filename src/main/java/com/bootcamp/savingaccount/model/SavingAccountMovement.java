@@ -14,6 +14,6 @@ public class SavingAccountMovement {
     private String  id;
     private Integer accountNumber;
     private String  movementType;
-    private Date    movementDate;
+    private String  movementDate;
     private Double  amount;
 }

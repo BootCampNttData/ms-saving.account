@@ -16,5 +16,5 @@ public class SavingAccount {
     public Double  feeAmount;
     public Double  minimalAmount;
     public Integer movementLimit;
-    public Date    creationDate;
+    public String  creationDate;
 }

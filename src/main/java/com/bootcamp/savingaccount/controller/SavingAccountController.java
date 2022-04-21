@@ -1,6 +1,5 @@
 package com.bootcamp.savingaccount.controller;
 
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +23,7 @@ public class SavingAccountController {
 
     public final SavingAccountService savingAccountService;
     public final SavingAccountMovementService savingAccountMovementService;
-    
-    
+
     @GetMapping
     public Flux<SavingAccount> getAll(){
         return savingAccountService.findAll();
@@ -85,12 +83,12 @@ public class SavingAccountController {
 //        return savingAccountMovementService.findAll();
 //    }
 
-    @GetMapping("{accountNumber}/movement")
+    @GetMapping("/movement/{accountNumber}")
     public Flux<SavingAccountMovement> getByAccountNumber(@PathVariable("accountNumber") String num){
         return savingAccountMovementService.findByAccountNumber(num);
     }
 
-    @GetMapping("{accountNumber}/balance")
+    @GetMapping("/balance/{accountNumber}")
     public String getAccountBalance(@PathVariable("accountNumber") String savingAccount){
         double balance=0;
 //        RestTemplate restTemplate=new RestTemplate();
@@ -106,22 +104,17 @@ public class SavingAccountController {
         return String.valueOf(balance);
     }
 
-    @PostMapping("movement")
+    @PostMapping("/movement")
     public Mono<SavingAccountMovement> create(@RequestBody SavingAccountMovement savingSavingAccountMovement){
         return savingAccountMovementService.create(savingSavingAccountMovement);
     }
 
-//    @PostMapping("/update")
-//    public Mono<SavingAccountMovement> update(@RequestBody SavingAccountMovement savingSavingAccountMovement){
-//        return savingAccountMovementService.create(savingSavingAccountMovement);
-//    }
-
-    @DeleteMapping("movement")
+    @DeleteMapping("/movement")
     public Mono<SavingAccountMovement> delete(@RequestBody SavingAccountMovement savingSavingAccountMovement){
         return savingAccountMovementService.delete(savingSavingAccountMovement);
     }
 
-    @DeleteMapping("movement/byId/{id}")
+    @DeleteMapping("/movement/byId/{id}")
     public Mono<SavingAccountMovement> deleteMovementById(@RequestBody String id){
         return savingAccountMovementService.deleteById(id);
     }
