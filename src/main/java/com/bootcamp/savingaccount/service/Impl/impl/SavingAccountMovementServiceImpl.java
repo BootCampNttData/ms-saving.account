@@ -45,8 +45,17 @@ public class SavingAccountMovementServiceImpl implements SavingAccountMovementSe
     }
 
     @Override
-    public Flux<SavingAccountMovement> findByAccountNumber(String mun) {
-        return repository.findByAccountNumber(mun);
+    public Flux<SavingAccountMovement> findByAccountNumber(Integer accountNumber) {
+        return repository.findByAccountNumber(accountNumber);
     }
 
+    @Override
+    public Mono<Double> getBalanceByAccount(Integer num) {
+        var movements = this.findByAccountNumber(num);
+        var balance = movements
+                .map(mov -> {
+                    return ("D".equals(mov.getMovementType()) ? 1 : -1 ) * mov.getAmount();
+                }).reduce(0d, (a, b) -> a + b);
+        return balance;
+    }
 }

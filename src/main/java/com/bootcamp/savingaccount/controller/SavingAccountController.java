@@ -78,30 +78,19 @@ public class SavingAccountController {
         return savingAccountService.findByClientId(id);
     }
     
-//    @GetMapping("movements")
-//    public Flux<SavingAccountMovement> getAllMovements(){
-//        return savingAccountMovementService.findAll();
-//    }
+    @GetMapping("/movement")
+    public Flux<SavingAccountMovement> getAllMovements(){
+        return savingAccountMovementService.findAll();
+    }
 
     @GetMapping("/movement/{accountNumber}")
-    public Flux<SavingAccountMovement> getByAccountNumber(@PathVariable("accountNumber") String num){
+    public Flux<SavingAccountMovement> getByAccountNumber(@PathVariable("accountNumber") Integer num){
         return savingAccountMovementService.findByAccountNumber(num);
     }
 
-    @GetMapping("/balance/{accountNumber}")
-    public String getAccountBalance(@PathVariable("accountNumber") String savingAccount){
-        double balance=0;
-//        RestTemplate restTemplate=new RestTemplate();
-//        String urlDp = passPrdUrl +"/savingSavingAccountMovement/find/" + savingAccount;
-//        ResponseEntity<SavingAccountMovement[]> savingSavingAccountMovements = restTemplate.getForEntity(urlDp,SavingAccountMovement[].class);
-//        for(SavingAccountMovement am: savingSavingAccountMovements.getBody()){
-//            if (am.getMovementType().equals("D")){
-//                balance += am.getAmount();
-//            }else if (am.getMovementType().equals("R")){
-//                balance -= am.getAmount();
-//            }
-//        }
-        return String.valueOf(balance);
+    @GetMapping("/accountBalance/{accountNumber}")
+    public Mono<Double> getAccountBalance(@PathVariable("accountNumber") Integer accountNumber){
+        return savingAccountMovementService.getBalanceByAccount(accountNumber);
     }
 
     @PostMapping("/movement")
