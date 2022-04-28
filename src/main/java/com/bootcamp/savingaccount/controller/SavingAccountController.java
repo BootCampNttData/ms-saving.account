@@ -13,11 +13,15 @@ import com.bootcamp.savingaccount.model.SavingAccountMovement;
 import com.bootcamp.savingaccount.service.Impl.SavingAccountMovementService;
 import com.bootcamp.savingaccount.service.Impl.SavingAccountService;
 import lombok.RequiredArgsConstructor;
+import reactor.core.CoreSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
-@RequestMapping("/savingAccount")
+@RequestMapping("/savingaccount")
 @RequiredArgsConstructor
 public class SavingAccountController {
 
@@ -32,6 +36,20 @@ public class SavingAccountController {
     @GetMapping("/accountNumber/{num}")
     public Flux<SavingAccount> findByAccountNumber(@PathVariable("num") String num){
         return savingAccountService.findByAccountNumber(num);
+    }
+
+    /**
+     * Obtiene una lista de las cuentas de Ahorro que posea el Cliente segun su Documento
+     * @param clientId Documento del Cliente
+     * @return Lista con las cuentas pertenecientes al Documento
+     */
+    @GetMapping("/findAcountsByClientId/{clientId}")
+    public Flux<Integer> findAcountsByClientId(@PathVariable("clientId") String clientId) {
+        var accounts = savingAccountService.findByClientId(clientId);
+        var lst = accounts.map(acc -> {
+            return acc.getAccountNumber();
+        });
+        return lst;
     }
 
     /**

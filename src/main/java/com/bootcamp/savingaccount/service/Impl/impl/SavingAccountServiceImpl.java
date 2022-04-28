@@ -49,9 +49,5 @@ public class SavingAccountServiceImpl implements SavingAccountService {
     public Flux<SavingAccount> findByClientId(String id) {
         return repository.findByClientId( id);
     }
-//    @Override
-//    public Mono<SavingAccount> findByClientIdAndSavingAccountType(String num,String type) {
-//
-//        return repository.findByClientIdAndSavingAccountType( num, type);
-//    }
+
 }

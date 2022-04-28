@@ -14,7 +14,7 @@ public class SavingAccount {
     public String  clientId;
     public Integer accountNumber;
     public Double  feeAmount;
-    public Double  minimalAmount;
+    public Double  minimalAmount;//minimumInitialDeposit
     public Integer movementLimit;
     public String  creationDate;
 }
