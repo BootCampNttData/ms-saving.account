@@ -44,7 +44,7 @@ public class SavingAccountController {
      * @return Lista con las cuentas pertenecientes al Documento
      */
     @GetMapping("/findAcountsByClientId/{clientId}")
-    public Flux<Integer> findAcountsByClientId(@PathVariable("clientId") String clientId) {
+    public Flux<String> findAcountsByClientId(@PathVariable("clientId") String clientId) {
         var accounts = savingAccountService.findByClientId(clientId);
         var lst = accounts.map(acc -> {
             return acc.getAccountNumber();
@@ -102,12 +102,12 @@ public class SavingAccountController {
     }
 
     @GetMapping("/movement/{accountNumber}")
-    public Flux<SavingAccountMovement> getByAccountNumber(@PathVariable("accountNumber") Integer num){
+    public Flux<SavingAccountMovement> getByAccountNumber(@PathVariable("accountNumber") String num){
         return savingAccountMovementService.findByAccountNumber(num);
     }
 
     @GetMapping("/accountBalance/{accountNumber}")
-    public Mono<Double> getAccountBalance(@PathVariable("accountNumber") Integer accountNumber){
+    public Mono<Double> getAccountBalance(@PathVariable("accountNumber") String accountNumber){
         return savingAccountMovementService.getBalanceByAccount(accountNumber);
     }
 

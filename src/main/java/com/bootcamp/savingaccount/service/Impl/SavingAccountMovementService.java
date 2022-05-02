@@ -7,9 +7,9 @@ import reactor.core.publisher.Mono;
 public interface SavingAccountMovementService {
     Flux<SavingAccountMovement> findAll();
     Mono<SavingAccountMovement> create(SavingAccountMovement savingAccountMovement);
-    Flux<SavingAccountMovement> findByAccountNumber(Integer num);
+    Flux<SavingAccountMovement> findByAccountNumber(String num);
     Mono<SavingAccountMovement> update(SavingAccountMovement savingAccountMovement);
     Mono<SavingAccountMovement> deleteById(String id);
     Mono delete(SavingAccountMovement savingAccountMovement);
-    Mono<Double> getBalanceByAccount(Integer num);
+    Mono<Double> getBalanceByAccount(String num);
 }

@@ -12,7 +12,7 @@ public class SavingAccount {
     @Id
     public String  id;
     public String  clientId;
-    public Integer accountNumber;
+    public String accountNumber;
     public Double  feeAmount;
     public Double  minimalAmount;//minimumInitialDeposit
     public Integer movementLimit;
